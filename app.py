@@ -21,7 +21,7 @@ if Instruction:  # Ensure input is not empty
             try:
                 # Call OpenAI API using ChatCompletion
                 response = openai.chat.completions.create(
-                    model="gpt-3.5-turbo",  # Use an appropriate chat model
+                    model="text-davinci-001",  # Use an appropriate chat model
                     messages=[
                         {"role": "system", "content": "You are a helpful personal chef."},
                         {"role": "user", "content": f"Give me food suggestions based on: {Instruction}"}
