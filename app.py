@@ -20,7 +20,7 @@ if Instruction:  # Ensure input is not empty
         if st.button("Show Options"):
             try:
                 # Call OpenAI API using ChatCompletion
-                response = openai.ChatCompletion.create(
+                response = openai.chat.completions.create(
                     model="gpt-3.5-turbo",  # Use an appropriate chat model
                     messages=[
                         {"role": "system", "content": "You are a helpful personal chef."},
