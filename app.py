@@ -19,14 +19,17 @@ if Instruction:  # Ensure input is not empty
     if len(Instruction) < 1000:
         if st.button("Show Options"):
             try:
-                # Call OpenAI API
-                response = openai.Completion.create(
-                    model="text-davinci-001",
-                    prompt=f"Act like my personal chef and give me food suggestions based on the following prompt: {Instruction}",
+                # Call OpenAI API using ChatCompletion
+                response = openai.ChatCompletion.create(
+                    model="gpt-3.5-turbo",  # Use an appropriate chat model
+                    messages=[
+                        {"role": "system", "content": "You are a helpful personal chef."},
+                        {"role": "user", "content": f"Give me food suggestions based on: {Instruction}"}
+                    ],
                     temperature=0,
                     max_tokens=1000
                 )
-                output = response.choices[0].text.strip()
+                output = response['choices'][0]['message']['content'].strip()
                 st.info(output)
             except Exception as e:
                 st.error(f"An error occurred: {e}")
